@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Teman> temanArrayList = new ArrayList<>();
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static String url_select = "http://10.0.2.2/umyTI/bacateman.php";
+    private static String url_select = "http://192.168.1.10/umyTI/bacateman.php";
     public static final String TAG_ID = "id";
     public static final String TAG_NAMA = "nama";
     public static final String TAG_TELPON = "telpon";
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public  void  bacaData(){
+        temanArrayList.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         JsonArrayRequest jArr = new JsonArrayRequest(url_select,new Response.Listener<JSONArray>(){
             @Override
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+                adapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener(){
             @Override
